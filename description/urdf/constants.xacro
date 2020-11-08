@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="constants" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Body properties -->
+    <xacro:property name="body_mass" value="1.33"/>
+    <xacro:property name="body_ixx" value="0.00563"/>
+    <xacro:property name="body_ixy" value="0"/>
+    <xacro:property name="body_ixz" value="0.00003"/>
+    <xacro:property name="body_iyy" value="0.01814"/>
+    <xacro:property name="body_iyz" value="0"/>
+    <xacro:property name="body_izz" value="0.02119"/>
+
+    <!-- Wheels properties -->
+    <xacro:property name="wheel_mass" value="0.125"/>
+    <xacro:property name="wheel_ixx" value="0.000256"/>
+    <xacro:property name="wheel_ixy" value="0"/>
+    <xacro:property name="wheel_ixz" value="0"/>
+    <xacro:property name="wheel_iyy" value="0.000296"/>
+    <xacro:property name="wheel_iyz" value="0"/>
+    <xacro:property name="wheel_izz" value="0.000256"/>
+
+    <!-- Distances from Body to Wheels -->
+    <xacro:property name="front_wheel" value="0.143"/>
+    <xacro:property name="back_wheel" value="${0.143-0.286}"/>
+    <xacro:property name="right_wheel" value="-0.15205"/>
+    <xacro:property name="left_wheel" value="0.15205"/>
+    <xacro:property name="height_to_wheel" value="-0.1135"/>
+
+</robot>
