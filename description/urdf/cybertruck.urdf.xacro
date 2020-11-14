@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="cybertruck" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Includes -->
+    <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+    <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
+
+    <link name="base_link"/>
+
+    <!-- Body -->
+    <link name="body_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://description/urdf/meshes/StampedeBody.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://description/urdf/meshes/StampedeBody.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${body_mass}"/>
+            <xacro:body_inertia/>
+        </inertial>
+    </link>
+
+    <joint name="body_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="body_link"/>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Wheels -->
+    <xacro:include filename="$(find description)/urdf/wheels.urdf.xacro"/>
+
+</robot>
+
