@@ -5,6 +5,6 @@
     <xacro:property name="fb_separation" value="0.286"/>
     <xacro:property name="lr_separation" value="0.304"/>
     <xacro:property name="height_to_wheel" value="-0.1135"/>
-
+    <xacro:property name="front_wheel" value="${fb_separation/2}"/>
 </robot>
 

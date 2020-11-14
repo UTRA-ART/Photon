@@ -4,6 +4,7 @@
     <!-- Includes -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
     <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
+    <!-- <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/> -->
 
     <link name="base_link"/>
 
@@ -36,6 +37,14 @@
 
     <!-- Wheels -->
     <xacro:include filename="$(find description)/urdf/wheels.urdf.xacro"/>
+    
+    <!-- LIDAR (also used for IMU) -->
+    <link name="scan_link"/>
+
+    <joint name="scan_joint" type="fixed">
+        <parent link="body_link"/>
+        <child link="scan_link"/>
+        <origin xyz="0 ${front_wheel} ${-height_to_wheel}" rpy="0 0 0"/>
+    </joint>
 
 </robot>
-
