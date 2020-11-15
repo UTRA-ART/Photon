@@ -1,50 +1,50 @@
 <?xml version="1.0"?>
-<robot name="caffeine_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="motors" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
-    <!-- Differential Drive -->
+    <!-- Differential Drive Controller -->
     <gazebo>
         <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
-            <updateRate>30.0</updateRate>
+            <alwaysOn>true</alwaysOn>
+            <legacyMode>false</legacyMode>
+            <rosDebugLevel>na</rosDebugLevel>
 
+            <!-- Plugin update rate (Hz) -->
+            <updateRate>30</updateRate>
+            
+            <!-- Name of joints connecting to wheels -->
             <leftJoint>back_left_wheel_joint</leftJoint>
             <rightJoint>back_right_wheel_joint</rightJoint>
+
+            <!-- Wheel properties -->
             <wheelSeparation>${lr_separation}</wheelSeparation>
+            <wheelDiameter>${2.0 * height_to_wheel}</wheelDiameter>
+            <wheelAcceleration>0</wheelAcceleration>
+            <wheelTorque>5</wheelTorque>
 
-            <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
-            <wheelDiameter>0.2410</wheelDiameter>
-
-            <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-            <wheelAcceleration>1.0</wheelAcceleration>
-
-            <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-            <wheelTorque>20</wheelTorque>
 
             <commandTopic>cmd_vel</commandTopic>
+
+            <!-- Odometry -->
+            <odometrySource>encoder</odometrySource>
             <odometryTopic>odom</odometryTopic>
             <odometryFrame>odom</odometryFrame>
             <robotBaseFrame>base_link</robotBaseFrame>
 
-            <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-            <odometrySource>0</odometrySource>
+            <!-- TF frames -->
+            <publishTf>true</publishTf>
+            <publishOdomTF>true</publishOdomTF>
 
             <publishWheelTF>false</publishWheelTF>
-            <publishOdomTF>false</publishOdomTF>
-
-            <publishTf>true</publishTf>
             <publishWheelJointState>true</publishWheelJointState>
-
-            <legacyMode>false</legacyMode>
         </plugin>
     </gazebo>
 
-    <!-- Transmission -->
+    <!-- Transmission-->
     <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>${robot_ns}</robotNamespace>
-        </plugin>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
     </gazebo>
 </robot>
 

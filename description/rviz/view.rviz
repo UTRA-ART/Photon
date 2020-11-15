@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /RobotModel1/Status1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -103,7 +102,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: photon/base_link
+    Fixed Frame: photon/odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -164,4 +163,4 @@ Window Geometry:
     collapsed: false
   Width: 1200
   X: 67
-  Y: 30
+  Y: 27
