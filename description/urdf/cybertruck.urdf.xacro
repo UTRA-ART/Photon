@@ -3,6 +3,7 @@
 
     <!-- Includes -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+    <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
 
     <link name="base_link"/>
 
@@ -24,8 +25,7 @@
 
         <inertial>
             <mass value="${body_mass}"/>
-            <inertia ixx="${body_ixx}"  ixy="${body_ixy}"  ixz="${body_ixz}" 
-                        iyy="${body_iyy}" iyz="${body_iyz}" izz="${body_izz}" />
+            <xacro:body_inertia/>
         </inertial>
     </link>
 
@@ -39,3 +39,4 @@
     <xacro:include filename="$(find description)/urdf/wheels.urdf.xacro"/>
 
 </robot>
+
