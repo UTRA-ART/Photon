@@ -24,7 +24,6 @@
             </collision>
 
             <inertial>
-                <mass value="${wheel_mass}"/>
                 <xacro:wheel_inertia/>
             </inertial>
         </link>

@@ -3,19 +3,21 @@
     
     <!-- Body --> 
     <xacro:macro name="body_inertia">
+        <mass value="1.33"/>
         <inertia
             ixx="1.33" ixy="0.00563" ixz="0.00003"
-            iyx="0.0000" iyy="0.01814" iyz="0.0000"
-            izx="0.0000" izy="0.0000" izz="0.02119"
+            iyy="0.01814" iyz="0.0000"
+            izz="0.02119"
         />
     </xacro:macro> 
 
     <!-- Wheels -->
     <xacro:macro name="wheel_inertia">
+        <mass value="0.125"/>
         <inertia
             ixx="0.125" ixy="0.000256" ixz="0.0000"
-            iyx="0.0000" iyy="0.000296" iyz="0.0000"
-            izx="0.0000" izy="0.0000" izz="0.000256"
+            iyy="0.000296" iyz="0.0000"
+            izz="0.000256"
         />
     </xacro:macro>
 

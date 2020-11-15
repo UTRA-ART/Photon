@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 <robot name="constants" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <!-- Body properties -->
-    <xacro:property name="body_mass" value="1.33"/>
-
-    <!-- Wheels properties -->
-    <xacro:property name="wheel_mass" value="0.125"/>
-
     <!-- Distances from Body to Wheels -->
     <xacro:property name="fb_separation" value="0.286"/>
     <xacro:property name="lr_separation" value="0.304"/>
