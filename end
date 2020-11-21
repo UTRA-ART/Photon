@@ -1,0 +1,47 @@
+[33mcommit 2ad475cad4d2c9a21f315096a1a608e8579eee09[m[33m ([m[1;36mHEAD -> [m[1;32mPHN8[m[33m, [m[1;31morigin/PHN8[m[33m)[m
+Author: Paula Santas Rodriguez <psantasr>
+Date:   Wed Nov 11 23:09:56 2020 -0500
+
+    Addedlaunch files for the worlds to be able to build them in Gazebo.
+
+[33mcommit f60b40213e133423052fcb1b27d96a480da81e95[m
+Author: EsteBran <tawseefhanif@gmail.com>
+Date:   Sat Nov 7 13:47:47 2020 -0500
+
+    Set up all the models in their correct folders and started working on world files for each world. Have not tested to see if world works yet
+
+[33mcommit df780df800bd58d3fc52c8246ecf6d207f7ffc94[m
+Author: EsteBran <tawseefhanif@gmail.com>
+Date:   Sat Nov 7 13:17:45 2020 -0500
+
+    added boilerplate from sim_tutorial
+
+[33mcommit d7f189d7615270b169426b19b9d1d9bbc7323ca4[m
+Author: EsteBran <tawseefhanif@gmail.com>
+Date:   Sat Nov 7 13:12:39 2020 -0500
+
+    added files from 2019Resources repository, need to start working on getting the worlds to work in gazebo
+
+[33mcommit 8e371ee4f04f4e29b1a8599f88bf0a670f448193[m
+Author: EsteBran <tawseefhanif@gmail.com>
+Date:   Sat Nov 7 13:03:43 2020 -0500
+
+    created remote branch for issue #8
+
+[33mcommit c3601db09c59dd88525762dcb49240ff59d6a994[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Erick Mejia Uzeda <40526591+erickmu1@users.noreply.github.com>
+Date:   Sat Oct 31 17:52:43 2020 -0400
+
+    Create PULL_REQUEST_TEMPLATE.md
+
+[33mcommit a535b80a54fff4151351a0c54a89254c68a1c5a2[m
+Author: Erick Mejia Uzeda <40526591+erickmu1@users.noreply.github.com>
+Date:   Sat Oct 31 17:46:16 2020 -0400
+
+    Added task (issue) templates
+
+[33mcommit 151b2d088f096d0668f07ff05c7a6c1d356ca7a4[m
+Author: Erick Mejia Uzeda <erickmu1@hotmail.com>
+Date:   Sat Oct 31 16:43:29 2020 -0400
+
+    README + gitignore

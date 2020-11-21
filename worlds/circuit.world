@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <sdf version="1.4">
-
-    <include>
-        <uri>models://circuit_race.stl</uri>
-    </include>
-
+    <world name="circuit">
+        <include>
+            <uri>model://circuit</uri>
+        </include>
+    </world>
 </sdf>

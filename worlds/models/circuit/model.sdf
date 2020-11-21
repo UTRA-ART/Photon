@@ -24,10 +24,13 @@
             <visual name="visual">
                 <cast_shadows>false</cast_shadows>
                 <geometry>
-                    <plane>
-                        <normal>0 0 1</normal>
-                        <size>5.25 3.9375</size>    <!-- "size" based on image aspect ratio -->
-                    </plane>
+                    <!-- <plane> -->
+                        <!-- <normal>0 0 1</normal> -->
+                        <!-- <size>5.25 3.9375</size>    "size" based on image aspect ratio -->
+                    <!-- </plane> -->
+                    <mesh>
+                        <uri>file://circuit/circuit_race.stl </uri>
+                    </mesh>
                 </geometry>
                 <material>
                     <script>
