@@ -8,7 +8,7 @@
                 <geometry>
                     <plane>
                         <normal>0 0 1</normal>
-                        <size>100 100</size>    <!-- Since is ground, make collision bigger than visual -->
+                        <size>1000 1000</size>    <!-- Since is ground, make collision bigger than visual -->
                     </plane>
                 </geometry>
                 <surface>
@@ -34,8 +34,9 @@
                 </geometry>
                 <material>
                     <script>
-                        <uri>model://circuit/materials/scripts/circuit.material</uri>
-                        <name>SumoRing/Image</name>
+                        <uri>model://circuit/materials/script/circuit.material</uri>
+                        <uri>model://circuit/materials/texture/Circuit_Race.jpg</uri>
+                        <name>circuit/Circuit_Race</name>
                     </script>
                 </material>
             </visual>

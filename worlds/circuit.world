@@ -1,8 +1,19 @@
 <?xml version="1.0"?>
 <sdf version="1.4">
+<<<<<<< HEAD
     <world name="circuit">
         <include>
             <uri>model://circuit</uri>
         </include>
     </world>
 </sdf>
+=======
+<world name="circuit">
+    <include>
+        <pose>0.04 0.125 0  0 0 0</pose>
+        <uri>models://circuit</uri>
+    </include>
+
+</world>
+</sdf>
+>>>>>>> 6bca16c30845f041508b1052b06d05766ff7e770
