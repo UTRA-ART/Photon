@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.4">
-    <model name="sumo_ring">
+    <model name="circuit">
         <static>true</static>
 
         <link name="link">
@@ -31,7 +31,7 @@
                 </geometry>
                 <material>
                     <script>
-                        <uri>model://sumo_ring/materials/scripts/sumo_ring.material</uri>
+                        <uri>model://circuit/materials/scripts/circuit.material</uri>
                         <name>SumoRing/Image</name>
                     </script>
                 </material>
