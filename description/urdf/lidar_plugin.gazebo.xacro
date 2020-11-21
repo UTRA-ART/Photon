@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="plugins" xmlns:xacro="http://ros.org/wiki/xacro">
-    <!-- Constants (Might not be needed for this file) -->
+    
+    <!-- Might use constants to change specific values-->
     <!-- <xacro:include filename="$(find description)/urdf/constants.xacro"/> -->
 
     <!-- LIDAR -->
