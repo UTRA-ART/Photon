@@ -4,7 +4,7 @@
     <!-- Includes -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
     <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
-    <!-- <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/> -->
+    <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/>
 
     <link name="base_link"/>
 

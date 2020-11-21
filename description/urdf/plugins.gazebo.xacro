@@ -26,9 +26,6 @@
                 </range>
                 <noise>
                     <type>gaussian</type>
-                    <!-- Noise based on gazebosim.org's tutorial on writing gazebo plugins w/ ROS. The comment they put will be reproduced:
-                        Noise parameters based on published spec for Hokuyo laser achieving "+-10mm" accuracy at range < 10 m. A mean of 
-                        0.0m and stddev of (0.01/3), will put 99.8% of samples within 0.03m of the true reading. -->
                     <mean>0.0</mean>
                     <stddev>${0.01/3}</stddev>
                 </noise>
@@ -40,3 +37,7 @@
             </plugin>
         </sensor>
     </gazebo>
+
+
+</robot>
+
