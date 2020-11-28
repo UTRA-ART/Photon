@@ -5,13 +5,12 @@
     <xacro:property name="fb_separation" value="0.286"/>
     <xacro:property name="lr_separation" value="0.304"/>
     <xacro:property name="height_to_wheel" value="-0.1135"/>
-    <xacro:property name="front_wheel" value="${fb_separation/2}"/>
 
     <!-- LIDAR -->
+    <xacro:property name="laser_visualize" value="false"/>
     <xacro:property name="laser_update_rate" value="10"/>
     <xacro:property name="laser_field_of_view" value="270"/>
     <xacro:property name="laser_min_range" value="0.06"/>
     <xacro:property name="laser_max_range" value="4.095"/>
 
 </robot>
-

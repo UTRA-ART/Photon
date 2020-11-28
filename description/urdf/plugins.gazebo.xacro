@@ -8,8 +8,7 @@
     <gazebo reference="scan_link">
         <sensor type="ray" name="gpu_hokuyo_sensor">
             <pose>0 0 0 0 0 0</pose>
-            <!-- Set visualize to true for now -->
-            <visualize>true</visualize>
+            <visualize>${laser_visualize}</visualize>
             <update_rate>${laser_update_rate}</update_rate> 
             <ray>
                 <scan>
@@ -39,6 +38,4 @@
         </sensor>
     </gazebo>
 
-
 </robot>
-
