@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot name="plugins" xmlns:xacro="http://ros.org/wiki/xacro">
     
-    <!-- Might use constants to change specific values-->
-    <!-- <xacro:include filename="$(find description)/urdf/constants.xacro"/> -->
+    <!-- Constants -->
+    <xacro:property name="laser_update_rate" value="10"/>
 
     <!-- LIDAR -->
     <gazebo reference="scan_link">
@@ -10,7 +10,8 @@
             <pose>0 0 0 0 0 0</pose>
             <!-- Set visualize to true for now -->
             <visualize>true</visualize>
-            <update_rate>30.0</update_rate>
+            <!-- Changed update rate from 30 to 10 -->
+            <update_rate>${laser_update_rate}</update_rate> 
             <ray>
                 <scan>
                     <horizontal>
