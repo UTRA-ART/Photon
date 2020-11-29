@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="motors" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="plugins" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
