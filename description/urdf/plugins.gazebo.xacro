@@ -15,8 +15,8 @@
             <updateRate>30</updateRate>
             
             <!-- Name of joints connecting to wheels -->
-            <leftJoint>back_left_wheel_joint</leftJoint>
-            <rightJoint>back_right_wheel_joint</rightJoint>
+            <leftJoint>front_left_wheel_joint</leftJoint>
+            <rightJoint>front_right_wheel_joint</rightJoint>
 
             <!-- Wheel properties -->
             <wheelSeparation>${lr_separation}</wheelSeparation>
@@ -47,4 +47,3 @@
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
     </gazebo>
 </robot>
-
