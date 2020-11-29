@@ -11,5 +11,8 @@
         <arg name="robot_ns" value="photon"/>
     </include>
 
+    <!-- View the robot -->
+    <include file="$(find description)/launch/view.launch"/>
+    
 </launch>
 
