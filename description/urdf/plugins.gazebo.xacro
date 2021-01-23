@@ -39,4 +39,28 @@
         </sensor>
     </gazebo>
 
+    <!-- IMU -->
+    <gazebo reference="scan_link">
+        <gravity>true</gravity>
+        
+        <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>${imu_update_rate}</update_rate>
+            <topic>__default_topic__</topic>
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>imu/data</topicName>
+                <!-- Ask about topicName/ bodyName. Why do we do it all to the scan_link, but in caffeine they do it by scan_link/imu -->
+                <bodyName>scan_link</bodyName> 
+                <frameName>scan_link</frameName>
+                <updateRateHZ>${imu_update_rate}</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise> 
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+            
+            <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo>
+
 </robot>

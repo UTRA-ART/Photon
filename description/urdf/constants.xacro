@@ -13,4 +13,7 @@
     <xacro:property name="laser_min_range" value="0.06"/>
     <xacro:property name="laser_max_range" value="4.095"/>
 
+    <!-- IMU -->
+    <xacro:property name="imu_update_rate" value="128"/>
+
 </robot>
