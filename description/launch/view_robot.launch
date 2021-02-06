@@ -1,4 +1,0 @@
-<launch>
-    <!-- Load the custom RViz configuration -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/cybertruck.rviz"/>
-</launch>
