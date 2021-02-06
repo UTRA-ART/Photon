@@ -1,19 +1,25 @@
 <?xml version="1.0"?>
 <robot name="inertias" xmlns:xacro="http://ros.org/wiki/xacro">
-
-    <!-- Body -->
-    <!-- NOTE: approximate as a box with "-y" as forward -->
-    <xacro:macro name="body_inertial" params="m l w h">
-        <mass value="${m}"/>
+    
+    <!-- Body --> 
+    <xacro:macro name="body_inertia">
+        <mass value="1.33"/>
         <inertia
-            ixx="${m*(h*h + l*l)/12}" ixy="0" ixz="0" 
-            iyy="${m*(w*w + h*h)/12}" iyz="0" 
-            izz="${m*(w*w + l*l)/12}"
-        /> 
+            ixx="1.33" ixy="0.00563" ixz="0.00003"
+            iyy="0.01814" iyz="0.0000"
+            izz="0.02119"
+        />
+    </xacro:macro> 
+
+    <!-- Wheels -->
+    <xacro:macro name="wheel_inertia">
+        <mass value="0.125"/>
+        <inertia
+            ixx="0.125" ixy="0.000256" ixz="0.0000"
+            iyy="0.000296" iyz="0.0000"
+            izz="0.000256"
+        />
     </xacro:macro>
 
-    <!-- Wheel -->
-    <!-- NOTE: wheels are radially symmetric around the x-axis -->
-    <!-- TODO: define a macro for the inertial of a wheel (can approx as a cylinder) -->
-
 </robot>
+

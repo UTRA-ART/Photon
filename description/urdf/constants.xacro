@@ -14,10 +14,15 @@
     <xacro:property name="wheel_separation" value="0.047"/>
 
     <!-- Distances from Body to Wheels -->
-    <xacro:property name="front_wheel" value="-0.053"/>
-    <xacro:property name="back_wheel" value="0.04"/>
-    <xacro:property name="right_wheel" value="-${wheel_separation/2}"/>
-    <xacro:property name="left_wheel" value="${wheel_separation/2}"/>
-    <xacro:property name="height_to_wheel" value="-0.015"/>
+    <xacro:property name="fb_separation" value="0.286"/>
+    <xacro:property name="lr_separation" value="0.304"/>
+    <xacro:property name="height_to_wheel" value="-0.1135"/>
+
+    <!-- LIDAR -->
+    <xacro:property name="laser_visualize" value="false"/>
+    <xacro:property name="laser_update_rate" value="10"/>
+    <xacro:property name="laser_field_of_view" value="270"/>
+    <xacro:property name="laser_min_range" value="0.06"/>
+    <xacro:property name="laser_max_range" value="4.095"/>
 
 </robot>

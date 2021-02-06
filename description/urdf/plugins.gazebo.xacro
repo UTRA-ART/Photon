@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="plugins" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Constants -->
+    <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+
+    <!-- LIDAR -->
+    <gazebo reference="scan_link">
+        <sensor type="ray" name="gpu_hokuyo_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <!-- TODO: Change values to actual lidar values-->
+            <visualize>${laser_visualize}</visualize>
+            <update_rate>${laser_update_rate}</update_rate> 
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1080</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${-0.5*laser_field_of_view*pi/180}</min_angle>
+                        <max_angle>${0.5*laser_field_of_view*pi/180}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>${laser_min_range}</min>
+                    <max>${laser_max_range}</max>
+                    <resolution>${0.36* pi/180}</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>${0.01/3}</stddev>
+                </noise>
+            </ray>
+
+            <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                <topicName>scan</topicName>
+                <frameName>scan_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

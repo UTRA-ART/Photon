@@ -1,43 +1,50 @@
 <?xml version="1.0"?>
-<robot name="cybertruck" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="cybertruck_wheels" xmlns:xacro="http://ros.org/wiki/xacro">
 
-<!-- Includes -->
-<xacro:include filename="$(find description)/urdf/constants.xacro"/>
+    <!-- Includes -->
+    <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+    <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
 
-<!-- Define wheel macro -->
-<xacro:macro name="Wheel" params="fb lr">
-    <link name="${fb}_${lr}_wheel_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0 " />
-            <geometry>
-                <mesh filename="package://description/urdf/meshes/cybertruck_${lr}_wheel.dae"/>
-            </geometry>
-        </visual>
+    <!-- Wheel macro -->
+    <xacro:macro name="Wheel" params="fb lr">
+        <!-- Wheel link -->
+        <link name="${fb}_${lr}_wheel_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://description/urdf/meshes/Wheel.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
 
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0 " />
-            <geometry>
-                <mesh filename="package://description/urdf/meshes/cybertruck_${lr}_wheel.dae"/>
-            </geometry>
-        </collision>
-    </link>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://description/urdf/meshes/Wheel.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
 
-    <joint name="${fb}_${lr}_wheel_joint" type="continuous">
-        <!-- Wheel Link -->
-        <parent link="body_link" />
-        <child link="${fb}_${lr}_wheel_link"/>
-        <origin xyz="${left_wheel if lr == 'left' else right_wheel} 
-                     ${front_wheel if fb == 'front' else back_wheel} 
-                     ${height_to_wheel}" rpy="0 0 0" />
-        <axis xyz="1 0 0" />
-    </joint>
-</xacro:macro>
+            <inertial>
+                <xacro:wheel_inertia/>
+            </inertial>
+        </link>
 
-<!-- Instantiate wheels -->
-<xacro:Wheel fb="front" lr = "left" />
-<xacro:Wheel fb="front" lr = "right" />
-<xacro:Wheel fb="back" lr = "left" />
-<xacro:Wheel fb="back" lr = "right" />
+        <!-- Wheel joint -->
+        <joint name="${fb}_${lr}_wheel_joint" type="continuous">
+            <parent link="body_link"/>
+            <child link="${fb}_${lr}_wheel_link"/>
+            <origin xyz="${fb_separation/2 if fb == 'front' else -fb_separation/2}
+                    ${-lr_separation/2 if lr == 'left' else lr_separation/2} 
+                    ${height_to_wheel}" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+        </joint>
+    </xacro:macro>
 
+    <!-- Instantiate wheels -->
+    <xacro:Wheel fb="front" lr="left"/>
+    <xacro:Wheel fb="front" lr="right"/>
+
+    <xacro:Wheel fb="back" lr="left"/>
+    <xacro:Wheel fb="back" lr="right"/>
 
 </robot>
+
