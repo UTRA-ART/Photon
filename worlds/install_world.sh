@@ -7,4 +7,3 @@ mkdir -p ~/.gazebo/models
 cp -vr models/circuit ~/.gazebo/models
 cp -vr models/drag_race ~/.gazebo/models
 cp -vr models/urban ~/.gazebo/models
-cp -vr models/sumo_ring ~/.gazebo/models
