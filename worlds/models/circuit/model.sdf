@@ -8,7 +8,7 @@
                 <geometry>
                     <plane>
                         <normal>0 0 1</normal>
-                        <size>1000 1000</size>    <!-- Since is ground, make collision bigger than visual -->
+                        <size>100 100</size>    <!-- Since is ground, make collision bigger than visual -->
                     </plane>
                 </geometry>
                 <surface>
@@ -26,7 +26,7 @@
                 <geometry>
                     <plane>
                         <normal>0 0 1</normal>
-                        <size>5.25 3.9375</size>    <!-- "size" based on image aspect ratio -->
+                        <size>5.25 5.25</size>    <!-- "size" based on image aspect ratio -->
                     </plane>
                     <mesh>
                         <uri>model://circuit/circuit.stl</uri>

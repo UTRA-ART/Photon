@@ -1,0 +1,41 @@
+<launch>
+    
+    <arg name="use_gui" default="true" />
+    <arg name="drag_race" default="false" />
+    <arg name="circuit" default="false" />
+    <arg name="urban" default="false" />
+
+  
+    <!-- Run for Drag Race -->
+    <group if="$(arg drag_race)">
+         <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                <arg name="world_name" value="$(find worlds)/drag_race.world" />
+                <arg name="debug" value="false" />
+                <arg name="gui" value="true" />
+                <arg name="paused" value="false" />
+        </include>
+    </group>
+
+    <group if="$(arg circuit)" >
+        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                <arg name="world_name" value="$(find worlds)/circuit.world" />
+                <arg name="debug" value="false" />
+                <arg name="gui" value="true" />
+                <arg name="paused" value="false" />
+        </include>
+    </group>
+
+    <group if="$(arg urban)">
+        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                <arg name="world_name" value="$(find worlds)/urban.world" />
+                <arg name="debug" value="false" />
+                <arg name="gui" value="true" />
+                <arg name="paused" value="false" />
+        </include>
+    </group>
+    
+
+
+    <!-- Spawn Robot
+    <include file="$(find description)/launch/spawn_robot.launch" /> -->
+</launch>
