@@ -37,6 +37,7 @@
                 <frameName>scan_link</frameName>
             </plugin>
         </sensor>
+
     </gazebo>
 
     <!-- IMU -->
@@ -49,9 +50,10 @@
             <topic>__default_topic__</topic>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu/data</topicName>
+                <!-- How come I don't need to say photon/imu/data ^^ there, below i listed out photon/scan_link instead of scan/link. I laso changed the reference from scan_link to photon/imu_link -->
                 <!-- Ask about topicName/ bodyName. Why do we do it all to the scan_link, but in caffeine they do it by scan_link/imu -->
-                <bodyName>scan_link</bodyName> 
-                <frameName>scan_link</frameName>
+                <bodyName>photon/scan_link</bodyName> 
+                <frameName>photon/scan_link</frameName>
                 <updateRateHZ>${imu_update_rate}</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise> 
                 <xyzOffset>0 0 0</xyzOffset>
