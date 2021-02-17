@@ -5,7 +5,7 @@
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
     <!-- LIDAR -->
-    <gazebo reference="scan_link">
+    <gazebo reference="lidar_link">
         <sensor type="ray" name="gpu_hokuyo_sensor">
             <pose>0 0 0 0 0 0</pose>
             <!-- TODO: Change values to actual lidar values-->
@@ -34,14 +34,14 @@
 
             <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
                 <topicName>scan</topicName>
-                <frameName>scan_link</frameName>
+                <frameName>lidar_link</frameName>
             </plugin>
         </sensor>
 
     </gazebo>
 
     <!-- IMU -->
-    <gazebo reference="scan_link">
+    <gazebo reference="imu_link">
         <gravity>true</gravity>
         
         <sensor name="imu_sensor" type="imu">
@@ -50,10 +50,8 @@
             <topic>__default_topic__</topic>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu/data</topicName>
-                <!-- How come I don't need to say photon/imu/data ^^ there, below i listed out photon/scan_link instead of scan/link. I laso changed the reference from scan_link to photon/imu_link -->
-                <!-- Ask about topicName/ bodyName. Why do we do it all to the scan_link, but in caffeine they do it by scan_link/imu -->
-                <bodyName>photon/scan_link</bodyName> 
-                <frameName>photon/scan_link</frameName>
+                <bodyName>photon/imu_link</bodyName> 
+                <frameName>photon/imu_link</frameName>
                 <updateRateHZ>${imu_update_rate}</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise> 
                 <xyzOffset>0 0 0</xyzOffset>
