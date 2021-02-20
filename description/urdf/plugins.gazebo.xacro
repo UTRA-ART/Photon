@@ -4,7 +4,6 @@
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
-<<<<<<< HEAD
     <!-- LIDAR -->
     <gazebo reference="scan_link">
         <sensor type="ray" name="gpu_hokuyo_sensor">
@@ -40,7 +39,6 @@
         </sensor>
     </gazebo>
 
-=======
     <!-- Differential Drive Controller -->
     <gazebo>
         <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
@@ -83,5 +81,4 @@
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
     </gazebo>
->>>>>>> ef480fefc5cff283bff453b3ec6b471e0fc543b3
 </robot>

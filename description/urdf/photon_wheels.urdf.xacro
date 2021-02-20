@@ -102,7 +102,7 @@
     <joint name="${name}_wheel_joint" type="continuous">
       <parent link="${name}_steer_link"/>
       <child link="${name}_wheel_link"/>
-      <origin xyz="0 0 ${-steer_height}" rpy="0 0 0"/>
+      <origin xyz="0 0 ${-steer_height+height_to_wheel}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
     </joint>
 
@@ -138,14 +138,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+          <cylinder radius="${wheel_radius}" length="${thickness}"/>
         </geometry>
       </visual>
 
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+          <cylinder radius="${wheel_radius}" length="${thickness}"/>
         </geometry>
       </collision>
     </link>
@@ -154,7 +154,7 @@
       <parent link="${parent}_link"/>
       <child link="${name}_wheel_link"/>
       <xacro:insert_block name="origin"/>
-      <axis xyz="0 1 0"/>
+      <axis xyz="0 0 1"/>
     </joint>
 
     <!-- Transmission is important to link the joints and the controller -->
@@ -195,7 +195,7 @@
     <joint name="${name}_wheel_joint" type="continuous">
       <parent link="${parent}_link"/>
       <child link="${name}_wheel_link"/>
-      <origin xyz="${-length/2} ${right_left*(width/2)} 0" rpy="0 0 0"/>
+      <origin xyz="${-length/2} ${right_left*(width/2)} ${height_to_wheel}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
     </joint>
 

@@ -59,7 +59,7 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
   <xacro:front_steer name="front" parent="base" length="${fb_separation}" 
     steer_height="${wheel_radius+steer_offset}"/>
   <xacro:rear_wheel name="rear" parent="base">
-    <origin xyz="${-fb_separation/2} 0 0" rpy="0 0 0"/>
+    <origin xyz="${-fb_separation/2} 0 ${height_to_wheel}" rpy="${-90 * deg_to_rad} 0 0"/>
   </xacro:rear_wheel>
 
   <!-- Wheels -->
