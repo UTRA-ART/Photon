@@ -1,5 +1,4 @@
 <launch>
-
     <arg name="camera_ns" default="camera/camera_node"/>
 
     <group ns="$(arg camera_ns)">
@@ -9,8 +8,9 @@
             <remap from="disparity"         to="disparity/disparity_registered"/>
             <remap from="left/image_raw"    to="left/image_raw_color"/>
             <remap from="right/image_raw"   to="right/image_raw_color"/>
+
             <!-- <param name="speckle_range"     value="8"/> -->
             <param name="speckle_size"      value="400"/>
         </node>
-
+    </group>
 </launch>
