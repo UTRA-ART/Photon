@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Includes -->
+  <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+  <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
+
+  <!-- Front steer -->
+  <xacro:macro name="front_steer" params="name parent length steer_height">
+    <link name="${name}_steer_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1"/>
+        <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_steer_joint" type="revolute">
+      <parent link="${parent}_link"/>
+      <child link="${name}_steer_link"/>
+      <origin xyz="${length/2} 0 ${steer_height}" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="${steer_effort}"
+             lower="${-180.0 * deg_to_rad}" upper="${180.0 * deg_to_rad}"
+             velocity="${steer_velocity}"/>
+    </joint>
+
+    <gazebo reference="${name}_steer_link">
+      <material>Gazebo/Yellow</material>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Front wheels -->
+  <xacro:macro name="front_wheel_lr" params="name parent length width right_left steer_height">
+    <link name="${name}_steer_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1"/>
+        <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="${steer_radius}" length="${steer_thickness}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_steer_joint" type="revolute">
+      <parent link="${parent}_link"/>
+      <child link="${name}_steer_link"/>
+      <origin xyz="${length/2} ${right_left*(width/2)} ${steer_height}" rpy="0 0 0"/>
+      <!--xacro:insert_block name="origin"/-->
+      <axis xyz="0 0 1"/>
+      <limit effort="${steer_effort}"
+             lower="${-180.0 * deg_to_rad}" upper="${180.0 * deg_to_rad}"
+             velocity="${steer_velocity}"/>
+    </joint>
+
+    <link name="${name}_wheel_link">
+      <inertial>
+        <xacro:wheel_inertia/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_wheel_joint" type="continuous">
+      <parent link="${name}_steer_link"/>
+      <child link="${name}_wheel_link"/>
+      <origin xyz="0 0 ${-steer_height}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Transmission is important to link the joints and the controller -->
+    <transmission name="${name}_steer_joint_trans" type="SimpleTransmission">
+      <actuator name="${name}_steer_joint_motor"/>
+      <joint name="${name}_steer_joint"/>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>1</motorTorqueConstant>
+    </transmission>
+    <transmission name="${name}_wheel_joint_trans" type="SimpleTransmission">
+      <actuator name="${name}_wheel_joint_motor"/>
+      <joint name="${name}_wheel_joint"/>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>1</motorTorqueConstant>
+    </transmission>
+
+    <gazebo reference="${name}_steer_link">
+      <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="${name}_wheel_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Rear wheel -->
+  <xacro:macro name="rear_wheel" params="name parent *origin">
+    <link name="${name}_wheel_link">
+      <inertial>
+        <xacro:wheel_inertia/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_wheel_joint" type="continuous">
+      <parent link="${parent}_link"/>
+      <child link="${name}_wheel_link"/>
+      <xacro:insert_block name="origin"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Transmission is important to link the joints and the controller -->
+    <transmission name="${name}_wheel_joint_trans" type="SimpleTransmission">
+      <actuator name="${name}_wheel_joint_motor"/>
+      <joint name="${name}_wheel_joint"/>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>1</motorTorqueConstant>
+    </transmission>
+
+    <gazebo reference="${name}_wheel_link">
+      <material>Gazebo/Yellow</material>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Rear wheels -->
+  <xacro:macro name="rear_wheel_lr" params="name parent length width right_left">
+    <link name="${name}_wheel_link">
+      <inertial>
+        <xacro:wheel_inertia/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://description/urdf/meshes/Wheelfxorigin.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_wheel_joint" type="continuous">
+      <parent link="${parent}_link"/>
+      <child link="${name}_wheel_link"/>
+      <origin xyz="${-length/2} ${right_left*(width/2)} 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Transmission is important to link the joints and the controller -->
+    <transmission name="${name}_wheel_joint_trans" type="SimpleTransmission">
+      <actuator name="${name}_wheel_joint_motor"/>
+      <joint name="${name}_wheel_joint"/>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>1</motorTorqueConstant>
+    </transmission>
+
+    <gazebo reference="${name}_wheel_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+  </xacro:macro>
+</robot>
