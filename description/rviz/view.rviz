@@ -7,7 +7,10 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
+<<<<<<< HEAD
         - /LaserScan1
+=======
+>>>>>>> ef480fefc5cff283bff453b3ec6b471e0fc543b3
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -137,7 +140,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: photon/base_link
+    Fixed Frame: photon/odom
     Frame Rate: 30
   Name: root
   Tools:

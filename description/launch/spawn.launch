@@ -22,9 +22,21 @@
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
+<<<<<<< HEAD
     <!-- rqt steering -->
     <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
         <param name="default_topic" value="/cmd_vel"/> 
     </node>
+=======
+        <!-- Setup TF Tree -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+        <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+            <param name="default_topic" value="/$(arg robot_ns)/cmd_vel"/> 
+        </node>
+        <include file="$(find description)/launch/view.launch"/>
+    </group>
+>>>>>>> ef480fefc5cff283bff453b3ec6b471e0fc543b3
 </launch>
 
