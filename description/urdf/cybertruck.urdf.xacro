@@ -37,7 +37,7 @@
 
     <!-- Wheels -->
     <xacro:include filename="$(find description)/urdf/wheels.urdf.xacro"/>
-    
+
     <!-- LIDAR (also used for IMU) -->
     <link name="scan_link"/>
 
@@ -46,5 +46,31 @@
         <child link="scan_link"/>
         <origin xyz="0 ${fb_separation/2} ${-height_to_wheel}" rpy="0 0 0"/>
     </joint>
+
+    <!-- ZED Camera -->
+    <link name="${tf_prefix}/camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="${camera_width} ${camera_length} ${camera_height}"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${camera_width} ${camera_length} ${camera_height}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <xacro:box_inertia mass="${camera_mass}" length="${camera_length}" width="${camera_width}" height="${camera_height}"/>
+            <mass value="${camera_mass}"/>
+        </inertial>
+    </link>
+    <joint name="${tf_prefix}/camera_joint" type="fixed">
+        <origin xyz="${stand_length/2 - camera_width} 0 ${camera_height / 2.0}" rpy="0 ${camera_pitch} 0"/>
+        <parent link="${tf_prefix}/stand_link"/>
+        <child link="${tf_prefix}/camera_link"/>
+    </joint>
+
 
 </robot>

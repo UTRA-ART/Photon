@@ -13,4 +13,27 @@
     <xacro:property name="laser_min_range" value="0.06"/>
     <xacro:property name="laser_max_range" value="4.095"/>
 
+        <xacro:property name="camera_mass" value="0.1587573"/>
+    <xacro:property name="camera_length" value="0.175"/>
+    <xacro:property name="camera_width" value="0.03"/>
+    <xacro:property name="camera_height" value="0.033"/>
+    <xacro:property name="camera_pitch" value="${15 * pi/180}"/>
+
+    <!-- Camera image height/width corresponds to image size for 60Hz refresh-->
+    <xacro:property name="image_refresh" value="60"/>
+    <xacro:property name="image_width" value="3840"/>
+    <xacro:property name="image_height" value="1080"/>
+    <xacro:property name="image_format" value="R8G8B8"/>
+    <xacro:property name="image_hfov" value="${90 * pi/180}"/>
+
+    <xacro:property name="name" value="camera/camera_node"/>
+    <xacro:property name="always_on" value="true"/>
+    <xacro:property name="update_rate" value="0"/>
+    <xacro:property name="image_topicName" value="image_raw_color"/>
+    <xacro:property name="image_info_topicName" value="camera_info"/>
+    <xacro:property name="depth_topicName" value="depth/image_raw"/>
+    <xacro:property name="depth_info_topicName" value="depth/camera_info"/>
+    <xacro:property name="depth_points_topicName" value="depth/points"/>
+    <xacro:property name="frameName" value="zed_camera_link_optical"/>
+
 </robot>

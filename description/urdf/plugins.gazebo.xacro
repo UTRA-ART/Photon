@@ -4,13 +4,14 @@
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
+
     <!-- LIDAR -->
     <gazebo reference="scan_link">
         <sensor type="ray" name="gpu_hokuyo_sensor">
             <pose>0 0 0 0 0 0</pose>
             <!-- TODO: Change values to actual lidar values-->
             <visualize>${laser_visualize}</visualize>
-            <update_rate>${laser_update_rate}</update_rate> 
+            <update_rate>${laser_update_rate}</update_rate>
             <ray>
                 <scan>
                     <horizontal>
@@ -38,5 +39,57 @@
             </plugin>
         </sensor>
     </gazebo>
+
+<!--Stereo Camera-->
+    <!-- Gazebo multicamera plugin -->
+    <gazebo reference="${tf_prefix}/camera_link">
+        <sensor type="multicamera" name="stereo_camera">
+            <update_rate>${image_refresh}</update_rate>
+            <camera name="left">
+            <horizontal_fov>${image_hfov}</horizontal_fov>
+            <image>
+                <width>${image_width}</width>
+                <height>${image_height}</height>
+                <format>${image_format}</format>
+            </image>
+            <clip>
+                <near>0.02</near>
+                <far>300</far>
+            </clip>
+            </camera>
+            <camera name="right">
+            <pose>0 ${-camera_length} 0 0 0 0</pose>
+            <horizontal_fov>${image_hfov}</horizontal_fov>
+            <image>
+                <width>${image_width}</width>
+                <height>${image_height}</height>
+                <format>${image_format}</format>
+            </image>
+            <clip>
+                <near>0.02</near>
+                <far>300</far>
+            </clip>
+            </camera>
+            <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+                <cameraName>${name}</cameraName>
+                <alwaysOn>${always_on}</alwaysOn>
+                <updateRate>${update_rate}</updateRate>
+                <imageTopicName>${image_topicName}</imageTopicName>
+                <cameraInfoTopicName>${image_info_topicName}</cameraInfoTopicName>
+                <depthImageTopicName>${depth_topicName}</depthImageTopicName>
+                <depthImageInfoTopicName>${depth_info_topicName}</depthImageInfoTopicName>
+                <pointCloudTopicName>${depth_points_topicName}</pointCloudTopicName>
+                <frameName>${tf_prefix}/${frameName}</frameName>
+                <hackBaseline>${camera_length}</hackBaseline>
+                <!-- TODO: Get distortion parameters from real camera -->
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
 
 </robot>
