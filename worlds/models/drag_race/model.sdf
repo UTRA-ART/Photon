@@ -26,7 +26,7 @@
                 <geometry>
                     <plane>
                         <normal>0 0 1</normal>
-                        <size>5.25 3.9375</size>    <!-- "size" based on image aspect ratio -->
+                        <size>18.0476 56.029</size>    <!-- "size" based on image aspect ratio -->
                     </plane>
                 </geometry>
                 <material>

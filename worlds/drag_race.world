@@ -8,7 +8,7 @@
     </gui>
 
     <include>
-      <pose>0.04 0.125 0  0 0 0</pose>
+      <pose>24 0.125 0  0 0 -1.57079</pose> <!--rotated 90 degrees left-->
       <uri>model://drag_race</uri>
     </include>
 

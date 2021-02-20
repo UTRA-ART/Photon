@@ -26,7 +26,7 @@
                 <geometry>
                     <plane>
                         <normal>0 0 1</normal>
-                        <size>5.25 5.25</size>    <!-- "size" based on image aspect ratio -->
+                        <size>25 25</size>   <!-- "size" based on image aspect ratio -->
                     </plane>
                     <mesh>
                         <uri>model://circuit/circuit.stl</uri>
