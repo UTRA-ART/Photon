@@ -25,14 +25,13 @@
     
     <!-- push robot_description to factory and spawn robot in gazebo -->
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-	args="-urdf -model ackermann_steering_bot -param robot_description -z 0.5"/>
+	args="-urdf -model photon -param robot_description -z 0.5"/>
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
     <!-- rqt_plot monitoring -->
-    <!--
-    <node name="ackermann_steering_bot_pos_monitor"
+    <!-- <node name="ackermann_steering_bot_pos_monitor"
         pkg="rqt_plot"
         type="rqt_plot"
         args="/ackermann_steering_bot_controller/odom/pose/pose/position/x" />
@@ -43,7 +42,7 @@
     <node name="ackermann_steering_bot_ang_vel_monitor"
         pkg="rqt_plot"
         type="rqt_plot"
-        args="/ackermann_steering_bot_controller/odom/twist/twist/angular/z" />
-    -->
+        args="/ackermann_steering_bot_controller/odom/twist/twist/angular/z" /> -->
+   
 </launch>
 
