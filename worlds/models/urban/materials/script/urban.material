@@ -1,0 +1,19 @@
+    material urban/Urban_Road_Challenge
+    {
+      technique
+      {
+        pass
+        {
+          ambient 0.5 0.5 0.5 1.0
+          diffuse 1.0 1.0 1.0 1.0
+          specular 0.0 0.0 0.0 1.0 0.5
+
+          texture_unit
+          {
+            texture ../texture/Urban_Road_Challenge.jpg
+            filtering trilinear
+          }
+        }
+      }
+    }
+    
