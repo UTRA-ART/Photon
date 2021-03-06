@@ -1,11 +1,15 @@
+<!--simulates the worlds given argument
+    default world is drag_race, can modify world_name
+    argument to change which world is spawned-->
+
 <launch>
     
     <arg name="use_gui" default="true" />
-    <arg name="world" default="circuit" />
+    <arg name="world" default="drag_race" />
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
   
-        <!-- Run for Drag Race --> 
+        <!-- will run the world with given name --> 
         <arg name="world_name" value="$(find worlds)/$(arg world).world" />
     
         <arg name="debug" value="false" />
