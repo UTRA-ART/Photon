@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+    <model name="drag_race">
+        <static>true</static>
+
+        <link name="link">
+            <collision name="collision">
+                <geometry>
+                    <plane>
+                        <normal>0 0 1</normal>
+                        <size>100 100</size>    <!-- Since is ground, make collision bigger than visual -->
+                    </plane>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>100</mu>
+                            <mu2>50</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+
+            <visual name="visual">
+                <cast_shadows>false</cast_shadows>
+                <geometry>
+                    <plane>
+                        <normal>0 0 1</normal>
+                        <size>18.0476 56.029</size>    <!-- "size" based on image aspect ratio -->
+                    </plane>
+                </geometry>
+                <material>
+                    <script>
+                        <uri>model://drag_race/materials/script/drag_race.material</uri>
+                        <name>drag_race/Drag_Race</name>
+                    </script>
+                </material>
+            </visual>
+        </link>
+    </model>
+</sdf>
