@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="plugins" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Constants -->
+    <xacro:include filename="$(find description)/urdf/constants.xacro"/>
+
+    <!-- Gazebo Controller -->
+    <gazebo>
+        <plugin name="steer_bot_hardware_gazebo" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+            <robotSimType>steer_bot_hardware_gazebo/SteerBotHardwareGazebo</robotSimType>
+        </plugin>
+    </gazebo>
+
+</robot>

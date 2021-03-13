@@ -13,6 +13,12 @@
     <!-- Load ackermann_steering_bot config -->
     <rosparam command="load" file="$(find description)/config/ackermann_steering_bot_hw_sim.yaml" />
 
+    <!-- Load PIDs -->
+    <rosparam file="$(find description)/config/pids.yaml" command="load"/>
+
+    <!-- Load gazebo controller config -->
+    <rosparam file="$(find description)/config/steer_bot_hardware_gazebo.yaml" command="load"/>
+
     <!-- Start ackermann_steering_bot -->
     <node name="ackermann_steering_controller_ackermann_steering_bot"
         pkg="ackermann_steering_controller"

@@ -7,6 +7,7 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
     <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
     <xacro:include filename="$(find description)/urdf/photon_wheels.urdf.xacro"/>
+    <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/>
 
     <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
 
