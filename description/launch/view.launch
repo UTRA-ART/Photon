@@ -1,6 +1,6 @@
 <launch>
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/view.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/photon.rviz"/>
 
 </launch>
 

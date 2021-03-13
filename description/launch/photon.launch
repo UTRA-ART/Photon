@@ -43,6 +43,13 @@
         pkg="rqt_plot"
         type="rqt_plot"
         args="/ackermann_steering_bot_controller/odom/twist/twist/angular/z" /> -->
-   
+    
+    <!-- Rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/photon.rviz"/>
+
+    <!-- rqt steering -->
+    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+        <param name="default_topic" value="/ackermann_steering_bot_controller/cmd_vel"/> 
+    </node>
 </launch>
 
