@@ -4,6 +4,7 @@ project(twist_mux)
 find_package(catkin REQUIRED
     COMPONENTS
       roscpp
+    #   message_generation
       std_msgs
       geometry_msgs
       visualization_msgs
@@ -55,3 +56,14 @@ if (CATKIN_ENABLE_TESTING)
 
     add_rostest(test/system.test)
 endif()
+
+# add_message_files(
+#   FILES
+#   Message1.msg
+# #   Message2.msg
+# )
+
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs  # Or other packages containing msgs
+# )
