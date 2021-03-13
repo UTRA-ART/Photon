@@ -77,7 +77,7 @@
     </joint>
 
     <!-- ZED Camera -->
-    <link name="${tf_prefix}/camera_link">
+    <link name="camera_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -95,9 +95,9 @@
             <mass value="${camera_mass}"/>
         </inertial>
     </link>
-    <joint name="${tf_prefix}/camera_joint" type="fixed">
-        <origin xyz="${stand_length/2 - camera_width} 0 ${camera_height / 2.0}" rpy="0 ${camera_pitch} 0"/>
-        <parent link="${tf_prefix}/stand_link"/>
-        <child link="${tf_prefix}/camera_link"/>
+    <joint name="camera_joint" type="fixed">
+        <origin xyz="${body_length/2 - camera_width} 0 ${camera_height / 2.0}" rpy="0 ${camera_pitch} 0"/>
+        <parent link="body_link"/>
+        <child link="camera_link"/>
     </joint>
 </robot>

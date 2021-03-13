@@ -43,7 +43,7 @@
     <xacro:property name="update_rate" value="0"/>
     <xacro:property name="image_topicName" value="image_raw_color"/>
     <xacro:property name="image_info_topicName" value="camera_info"/>
-    <!--xacro:property name="depth_topicName" value="depth/image_raw"/-->
+    <xacro:property name="depth_topicName" value="depth/image_raw"/>
     <xacro:property name="depth_info_topicName" value="depth/camera_info"/>
     <xacro:property name="depth_points_topicName" value="depth/points"/>
     <xacro:property name="frameName" value="zed_camera_link_optical"/>
