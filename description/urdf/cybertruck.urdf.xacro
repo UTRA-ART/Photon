@@ -71,6 +71,4 @@
         <parent link="${tf_prefix}/stand_link"/>
         <child link="${tf_prefix}/camera_link"/>
     </joint>
-
-
 </robot>
