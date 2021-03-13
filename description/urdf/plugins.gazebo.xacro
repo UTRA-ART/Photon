@@ -103,7 +103,7 @@
                 <depthImageTopicName>${depth_topicName}</depthImageTopicName>
                 <depthImageInfoTopicName>${depth_info_topicName}</depthImageInfoTopicName>
                 <pointCloudTopicName>${depth_points_topicName}</pointCloudTopicName>
-                <frameName>photon/camera_link</frameName>
+                <frameName>camera_link</frameName>
                 <hackBaseline>${camera_length}</hackBaseline>
                 <!-- TODO: Get distortion parameters from real camera -->
                 <distortionK1>0.0</distortionK1>
