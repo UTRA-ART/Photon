@@ -8,8 +8,12 @@
 
     <!-- Spawn the robot -->
     <include file="$(find description)/launch/spawn.launch">
-        <arg name="robot_ns" value="photon"/>
+        <!-- <arg name="robot_ns" value="photon"/> -->
     </include>
+
+    <include file="$(find twist_mux)/launch/twist_mux_custom.launch">
+      <arg name="cmd_vel_out" value="cmd_vel"/>
+   </include>
 
 </launch>
 

@@ -19,3 +19,11 @@ locks:
   topic   : stop_closing_loop
   timeout : 0.0
   priority: 200
+-
+  name    : joystick 
+  topic   : joy_priority
+  timeout : 0.0
+  priority: 100
+
+#Caffeine didnt include joystick. why?
+#Set the priorities here? how do we set each thing to mean each specific thing for the mux?
