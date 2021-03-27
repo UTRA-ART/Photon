@@ -39,4 +39,49 @@
         </sensor>
     </gazebo>
 
+    <!-- rqt steering stuff below -->
+     <!-- Differential Drive Controller -->
+    <gazebo>
+        <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <alwaysOn>true</alwaysOn>
+            <legacyMode>false</legacyMode>
+            <rosDebugLevel>na</rosDebugLevel>
+
+            <!-- Plugin update rate (Hz) -->
+            <updateRate>30</updateRate>
+
+            <!-- Name of joints connecting to wheels -->
+            <leftJoint>front_left_wheel_joint</leftJoint>
+            <rightJoint>front_right_wheel_joint</rightJoint>
+
+            <!-- Wheel properties -->
+            <wheelSeparation>${lr_separation}</wheelSeparation>
+            <wheelDiameter>${2.0 * height_to_wheel}</wheelDiameter>
+            <wheelAcceleration>0</wheelAcceleration>
+            <wheelTorque>5</wheelTorque>
+
+
+            <commandTopic>cmd_vel</commandTopic>
+
+            <!-- Odometry -->
+            <odometrySource>encoder</odometrySource>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <robotBaseFrame>base_link</robotBaseFrame>
+
+            <!-- TF frames -->
+            <publishTf>true</publishTf>
+            <publishOdomTF>true</publishOdomTF>
+
+            <publishWheelTF>false</publishWheelTF>
+            <publishWheelJointState>true</publishWheelJointState>
+        </plugin>
+    </gazebo>
+
+    <!-- Transmission-->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+    </gazebo>
+
+    <!-- rqt-steering stuff above -->
 </robot>
