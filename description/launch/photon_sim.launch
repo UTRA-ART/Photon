@@ -1,0 +1,35 @@
+<launch>
+    <!-- start world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+    <!-- Load robot description -->
+    <param name="robot_description"   
+         command="$(find xacro)/xacro '$(find description)/urdf/photon.urdf.xacro'" />
+
+    <!-- Load controller parameters -->
+    <rosparam command="load" file="$(find description)/config/ctrl_ackermann_steering_controller.yaml" />
+    <rosparam command="load" file="$(find description)/config/ctrl_gains.yaml" />
+    <rosparam command="load" file="$(find description)/config/ctrl_joint_state_publisher.yaml" />
+    <rosparam command="load" file="$(find description)/config/ctrl_steer_bot_hardware_gazebo.yaml" />
+
+    <!-- Spawn the controller -->
+    <node pkg="controller_manager" type="spawner" name="base_controller_spawner"
+        args="joint_state_publisher ackermann_steering_controller"/>
+   
+    <!-- Launch the robot state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <!-- Launch a rqt steering GUI for publishing to /steer_bot/steer_drive_controller/cmd_vel -->
+    <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering" >
+        <param name="default_topic" value="/ackermann_steering_controller/cmd_vel"/>
+    </node>
+
+    <!-- Spawn robot in Gazebo -->
+    <node name="spawn_vehicle" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model photon -z 0.5"
+        respawn="false" output="screen" />
+
+    <!-- View in Rviz -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/photon.rviz"/> -->
+</launch>
+

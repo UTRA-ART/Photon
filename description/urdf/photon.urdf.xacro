@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="photon" xmlns:xacro="http://www.ros.org/wiki/xacro">
 <!--
 Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF-Controller%20Example
 -->
@@ -10,10 +10,6 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
     <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/>
 
     <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
-
-    <!-- Constants for robot dimensions -->
-    <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of beam and the each joint -->
-    <xacro:property name="steer_offset" value="0.02" /> <!-- Link 1 -->
 
     <!-- Links: inertial,visual,collision -->
     <link name="base_link">
@@ -48,11 +44,12 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
         width="${lr_separation}" right_left="1" steer_height="${wheel_radius+steer_offset}"/>
     <xacro:front_wheel_lr name="front_left" parent="base" length="${fb_separation}" 
         width="${lr_separation}" right_left="-1" steer_height="${wheel_radius+steer_offset}"/>
-    <xacro:rear_wheel_lr name="rear_right" parent="base" length="${fb_separation}" 
-        width="${lr_separation}" right_left="1"/>
-    <xacro:rear_wheel_lr name="rear_left" parent="base" length="${fb_separation}" 
-        width="${lr_separation}" right_left="-1"/>
-
+    <xacro:rear_wheel_lr name="rear_right" parent="base">
+        <origin xyz="${-fb_separation/2} ${lr_separation/2} ${height_to_wheel}" rpy="0 0 0"/>
+    </xacro:rear_wheel_lr>
+    <xacro:rear_wheel_lr name="rear_left" parent="base">
+        <origin xyz="${-fb_separation/2} ${-1*(lr_separation/2)} ${height_to_wheel}" rpy="0 0 0"/>
+    </xacro:rear_wheel_lr>
 
     <!-- Colour -->
     <gazebo reference="base_link">
