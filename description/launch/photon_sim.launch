@@ -30,6 +30,6 @@
         respawn="false" output="screen" />
 
     <!-- View in Rviz -->
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/photon.rviz"/> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/view_photon.rviz"/>
 </launch>
 
