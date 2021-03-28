@@ -10,7 +10,7 @@
          command="$(find xacro)/xacro '$(find description)/urdf/photon.urdf.xacro'"/>
 
     <!-- Controller -->
-    <include filename="$(find description)/launch/controller.launch"/>
+    <include file="$(find description)/launch/controller.launch"/>
    
     <!-- Launch the robot state publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
