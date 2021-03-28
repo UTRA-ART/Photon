@@ -10,16 +10,16 @@
     <xacro:property name="wheel_radius" value="0.0635"/>
     <xacro:property name="thickness" value="0.1016"/>
 
-    <!-- Axle Positions -->
+    <!-- Axle Positions: Check with Mech Team, currently made up -->
     <xacro:property name="axel_offset" value="0.05"/>
     <xacro:property name="steer_offset" value="0.02"/> 
 
-    <!-- Steer dimensions -->
+    <!-- Steer dimensions: Check with Mech Team, currently made up -->
     <xacro:property name="steer_radius" value="0.05"/> 
     <xacro:property name="steer_thickness" value="0.02"/>
     <xacro:property name="steer_mass" value="1"/>
 
-    <!-- Steer properties -->
+    <!-- Steer properties: Check with Mech Team, currently made up -->
     <xacro:property name="steer_velocity" value="5.0"/> 
     <xacro:property name="steer_effort"   value="10.0"/>
     <xacro:property name="steer_limit_deg"   value="90.0"/>

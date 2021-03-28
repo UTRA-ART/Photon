@@ -1,22 +1,3 @@
-# Useful links for this branch #
-
-https://answers.ros.org/question/252478/how-to-build-a-package-from-source-on-ubuntu-mate-1604-lts-and-ros-kinetic/
-
-http://wiki.ros.org/ackermann_steering_controller
-
-http://wiki.ros.org/steer_bot_hardware_gazebo
-
-http://wiki.ros.org/steer_drive_controller
-
-https://github.com/CIR-KIT-Unit03/cirkit_unit03_simulator/tree/master/cirkit_unit03_gazebo
-
-https://github.com/CIR-KIT/steer_drive_ros
-
-
-
-
-
-
 # Photon on ROS #
 
 This project runs on ROS melodic for Ubuntu 18.04 LTS. Photon is a robot being built to compete in IARRC.
@@ -61,27 +42,10 @@ sudo apt-get install ros-melodic-robot-localization
 ```
 
 ## Cloning this repository ##
-
+Before cloning this repository, create a ROS workspace:
 ```bash
-# Make workspace
 mkdir -p photon-ws/src
-
-# Clone the repository
-git clone https://github.com/UTRA-ART/Photon.git
-
-# Clone steer drive plugin repo
-cd src/
-git clone https://github.com/tsedl/steer_drive_ros.git
-cd steer_drive_ros
-git checkout melodic-devel
-
-# Check dependencies
-rosdep check --from-paths src --ignore-src --rosdistro melodic
-
-# Install dependencies
-rosdep install --from-paths src --ignore-src --rosdistro melodic -y
-
-# Build
+cd photon-ws
 catkin_make
 ```
 After, clone this repository into the `/src` folder.
