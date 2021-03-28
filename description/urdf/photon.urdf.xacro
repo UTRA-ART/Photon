@@ -56,3 +56,4 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
         <material>Gazebo/Green</material>
     </gazebo>
 </robot>
+

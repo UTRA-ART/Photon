@@ -57,7 +57,7 @@
     </gazebo>
   </xacro:macro>
 
-  <!-- Front wheels -->
+  <!-- Front wheels left & right -->
   <xacro:macro name="front_wheel_lr" params="name parent length width right_left steer_height">
     <link name="${name}_steer_link"> 
       <visual>
@@ -197,7 +197,7 @@
     </gazebo>
   </xacro:macro>
 
-  <!-- Rear wheels -->
+  <!-- Rear wheels left & right-->
   <xacro:macro name="rear_wheel_lr" params="name parent *origin">
     <link name="${name}_wheel_link">
       <visual>
@@ -243,3 +243,4 @@
     </gazebo>
   </xacro:macro>
 </robot>
+
