@@ -61,10 +61,27 @@ sudo apt-get install ros-melodic-robot-localization
 ```
 
 ## Cloning this repository ##
-Before cloning this repository, create a ROS workspace:
+
 ```bash
+# Make workspace
 mkdir -p photon-ws/src
-cd photon-ws
+
+# Clone the repository
+git clone https://github.com/UTRA-ART/Photon.git
+
+# Clone steer drive plugin repo
+cd src/
+git clone https://github.com/tsedl/steer_drive_ros.git
+cd steer_drive_ros
+git checkout melodic-devel
+
+# Check dependencies
+rosdep check --from-paths src --ignore-src --rosdistro melodic
+
+# Install dependencies
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+
+# Build
 catkin_make
 ```
 After, clone this repository into the `/src` folder.
