@@ -30,3 +30,5 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find steer_drive_controller)/test/common/rviz/display.rviz"/>
 </launch>
+
+
