@@ -12,19 +12,7 @@ topics:
   timeout : 0.5
   priority: 50
 -
-  name    : joystick
-  topic   : joy_vel
-  timeout : 0.5
-  priority: 0.5
--
-  name    : keyboard
-  topic   : key_vel
+  name    : manual
+  topic   : man_vel
   timeout : 0.5
   priority: 100
--
-  name    : tablet
-  topic   : tab_vel
-  timeout : 0.5
-  priority: 0.5
-
-#Caffeine only had navigation nav_vel and keyboard

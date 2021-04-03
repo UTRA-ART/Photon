@@ -60,7 +60,6 @@
             <wheelAcceleration>0</wheelAcceleration>
             <wheelTorque>5</wheelTorque>
 
-
             <commandTopic>cmd_vel</commandTopic>
 
             <!-- Odometry -->
