@@ -1,10 +1,20 @@
-<launch>
+<!--simulates the worlds given argument
+    default world is drag_race, can modify world_name
+    argument to change which world is spawned-->
 
-    <arg name="use_gui" default="true"/>
+<launch>
     
+    <arg name="use_gui" default="true" />
+    <arg name="world" default="drag_race" />
+
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="gui" value="$(arg use_gui)"/>
-    </include>
+  
+        <!-- will run the world with given name --> 
+        <arg name="world_name" value="$(find worlds)/$(arg world).world" />
+    
+        <arg name="debug" value="false" />
+        <arg name="gui" value="true" />
+        <arg name="paused" value="false" />
 
     <!-- Spawn the robot -->
     <include file="$(find description)/launch/spawn.launch"/>
@@ -13,5 +23,5 @@
     <include file="$(find twist_mux)/launch/twist_mux_custom.launch">
       <arg name="cmd_vel_out" value="cmd_vel"/>
    </include>
-
+      
 </launch>

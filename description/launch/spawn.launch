@@ -30,9 +30,10 @@
         
         <!-- Added rqt robot steering -->
         <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-        <param name="default_topic" value="/cmd_vel"/> 
+            <param name="default_topic" value="/cmd_vel"/> 
         
-    </node>
+        </node>
+      
     </group>
     
 </launch>
