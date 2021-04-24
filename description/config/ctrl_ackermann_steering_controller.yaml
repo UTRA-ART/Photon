@@ -7,7 +7,7 @@ ackermann_steering_controller:
   open_loop: false
 
   # Joints
-  rear_wheel: 'rear_wheel_joint'
+  rear_wheel: 'virtual_rear_wheel_joint'
   front_steer: 'front_steer_joint'
 
   # Geometry

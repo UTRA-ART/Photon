@@ -4,16 +4,133 @@
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
-    <!-- Ackermann steering controller -->
+    <!-- Ackermann Steering Controller -->
     <gazebo>
-        <!-- Load ros_control plugin using the steer_bot_hardware_gazebo
-        implementation of the hardware_interface::RobotHW -->
+        <!-- Load ros_control plugin using the steer_bot_hardware_gazebo implementation of the hardware_interface::RobotHW -->
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-        <robotNamespace>/</robotNamespace>
-        <robotSimType>steer_bot_hardware_gazebo/SteerBotHardwareGazebo</robotSimType>
-        <legacyModeNS>false</legacyModeNS>
+            <robotNamespace>/</robotNamespace>
+            <robotSimType>steer_bot_hardware_gazebo/SteerBotHardwareGazebo</robotSimType>
+            <legacyModeNS>false</legacyModeNS>
         </plugin>
     </gazebo>
 
-</robot>
+    <!-- LIDAR -->
+    <gazebo reference="lidar_link">
+        <sensor type="ray" name="gpu_hokuyo_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <!-- TODO: Change values to actual lidar values-->
+            <visualize>${laser_visualize}</visualize>
+            <update_rate>${laser_update_rate}</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1080</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${-0.5*laser_field_of_view*pi/180}</min_angle>
+                        <max_angle>${0.5*laser_field_of_view*pi/180}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>${laser_min_range}</min>
+                    <max>${laser_max_range}</max>
+                    <resolution>${0.36* pi/180}</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>${0.01/3}</stddev>
+                </noise>
+            </ray>
 
+            <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                <topicName>scan</topicName>
+                <frameName>lidar_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- IMU -->
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+
+        <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>${imu_update_rate}</update_rate>
+            <topic>__default_topic__</topic>
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>imu/data</topicName>
+                <bodyName>imu_link</bodyName>
+                <frameName>imu_link</frameName>
+                <updateRateHZ>${imu_update_rate}</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+
+            <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo>
+
+    <!--Stereo Camera-->
+    <!-- NOTE: 
+    it is assumed that the left camera is at the origin specified by "frameName" (or
+    referenced by gazebo) and that the right camera is "hackBaseline" away from it
+    -->
+    <gazebo reference="camera_left_link">
+        <sensor type="multicamera" name="stereo_camera">
+            <update_rate>${camera_update_rate}</update_rate>
+
+            <camera name="left">
+                <horizontal_fov>${camera_hfov}</horizontal_fov>
+                <image>
+                    <width>${image_width}</width>
+                    <height>${image_height}</height>
+                    <format>${image_format}</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+            </camera>
+
+            <camera name="right">
+                <pose>0 -${stereo_offset} 0 0 0 0</pose>
+                <horizontal_fov>${camera_hfov}</horizontal_fov>
+                <image>
+                    <width>${image_width}</width>
+                    <height>${image_height}</height>
+                    <format>${image_format}</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+            </camera>
+
+            <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+                <cameraName>${camera_ns}</cameraName>
+                <alwaysOn>${always_on}</alwaysOn>
+                <updateRate>${camera_update_rate}</updateRate>
+                <imageTopicName>${image_topicName}</imageTopicName>
+                <cameraInfoTopicName>${image_info_topicName}</cameraInfoTopicName>
+                
+                <depthImageTopicName>${depth_topicName}</depthImageTopicName>
+                <depthImageInfoTopicName>${depth_info_topicName}</depthImageInfoTopicName>
+                
+                <pointCloudTopicName>${pointcloud_topicName}</pointCloudTopicName>
+
+                <frameName>${camera_left_optical_frame}</frameName>
+                <hackBaseline>${stereo_offset}</hackBaseline>
+
+                <!-- TODO: Get distortion parameters from real camera -->
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

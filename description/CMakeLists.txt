@@ -9,6 +9,8 @@ project(description)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   gazebo_ros
+  urdf
+  xacro
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES description
-#  CATKIN_DEPENDS gazebo_ros
+#  CATKIN_DEPENDS gazebo_ros urdf xacro
 #  DEPENDS system_lib
 )
 

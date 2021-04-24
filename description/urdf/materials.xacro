@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="materials" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Ackermann Steering -->
+    <gazebo reference="front_steer_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="front_left_steer_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="front_right_steer_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <gazebo reference="virtual_rear_wheel_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <!-- LIDAR -->
+    <gazebo reference="lidar_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <!-- IMU -->
+    <gazebo reference="imu_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <!-- STEREO CAMERA -->
+    <gazebo reference="camera_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+</robot>

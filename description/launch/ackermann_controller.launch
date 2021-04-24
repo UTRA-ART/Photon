@@ -1,4 +1,5 @@
 <launch>
+
     <!-- Load controller parameters -->
     <rosparam command="load" file="$(find description)/config/ctrl_ackermann_steering_controller.yaml" />
     <rosparam command="load" file="$(find description)/config/ctrl_gains.yaml" />
@@ -6,7 +7,6 @@
     <rosparam command="load" file="$(find description)/config/ctrl_steer_bot_hardware_gazebo.yaml" />
 
     <!-- Spawn the controller -->
-    <node pkg="controller_manager" type="spawner" name="base_controller_spawner"
-        args="joint_state_publisher ackermann_steering_controller"/>
-</launch>
+    <node pkg="controller_manager" type="spawner" name="base_controller_spawner" args="joint_state_publisher ackermann_steering_controller"/>
 
+</launch>
