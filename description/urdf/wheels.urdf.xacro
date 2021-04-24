@@ -33,7 +33,7 @@
             <parent link="body_link"/>
             <child link="${fb}_${lr}_wheel_link"/>
             <origin xyz="${fb_separation/2 if fb == 'front' else -fb_separation/2}
-                    ${-lr_separation/2 if lr == 'left' else lr_separation/2} 
+                    ${-lr_separation/2 if lr == 'left' else lr_separation/2}
                     ${height_to_wheel}" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
         </joint>

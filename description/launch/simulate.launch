@@ -1,23 +1,19 @@
-<!--simulates the worlds given argument
-    default world is drag_race, can modify world_name
-    argument to change which world is spawned-->
-
 <launch>
     
-    <arg name="use_gui" default="true" />
-    <arg name="world" default="drag_race" />
+    <arg name="use_gui" default="false"/>
+    <arg name="world" default="drag_race"/>
 
+    <!-- Simulate 'world' using Gazebo -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-  
-        <!-- will run the world with given name --> 
-        <arg name="world_name" value="$(find worlds)/$(arg world).world" />
+        <arg name="world_name" value="$(find worlds)/$(arg world).world"/>
     
-        <arg name="debug" value="false" />
-        <arg name="gui" value="true" />
-        <arg name="paused" value="false" />
+        <arg name="debug" value="false"/>
+        <arg name="gui" value="$(arg use_gui)"/>
+        <arg name="paused" value="false"/>
 
     </include>
 
     <!-- Spawn Robot -->
-    <include file="$(find description)/launch/spawn_robot.launch" /> 
+    <include file="$(find description)/launch/spawn.launch" />
+
 </launch>

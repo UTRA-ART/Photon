@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="inertias" xmlns:xacro="http://ros.org/wiki/xacro">
-    
-    <!-- Body --> 
+
+    <!-- Body -->
     <xacro:macro name="body_inertia">
         <mass value="1.33"/>
         <inertia
@@ -9,7 +9,7 @@
             iyy="0.01814" iyz="0.0000"
             izz="0.02119"
         />
-    </xacro:macro> 
+    </xacro:macro>
 
     <!-- Wheels -->
     <xacro:macro name="wheel_inertia">
@@ -18,6 +18,16 @@
             ixx="0.125" ixy="0.000256" ixz="0.0000"
             iyy="0.000296" iyz="0.0000"
             izz="0.000256"
+        />
+    </xacro:macro>
+
+    <!--Box Shaped Objects -->
+    <xacro:macro name="box_inertia" params="mass length width height">
+        <mass value="${mass}"/>
+        <inertia
+            ixx="${mass * (height*height + length*length) / 12.0}" ixy="0.0" ixz="0.0"
+            iyy="${mass * (width*width + length*length) / 12.0}" iyz="0.0"
+            izz="${mass * (width*width + height*height) / 12.0}"
         />
     </xacro:macro>
 
