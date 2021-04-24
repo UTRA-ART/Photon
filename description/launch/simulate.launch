@@ -2,6 +2,8 @@
     
     <arg name="use_gui" default="false"/>
     <arg name="world" default="drag_race"/>
+    <arg name="rqt_steer" default="false"/>
+    <arg name="rviz" default="false"/>
 
     <!-- Simulate 'world' using Gazebo -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -10,10 +12,23 @@
         <arg name="debug" value="false"/>
         <arg name="gui" value="$(arg use_gui)"/>
         <arg name="paused" value="false"/>
-
     </include>
 
     <!-- Spawn Robot -->
-    <include file="$(find description)/launch/spawn.launch" />
+    <include file="$(find description)/launch/spawn.launch"/>
+
+    <!-- MISCALLANEOUS -->
+
+    <!-- rqt robot steering GUI -->
+    <group if="$(arg rqt_steer)">
+        <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering">
+            <param name="default_topic" value="/ackermann_steering_controller/cmd_vel"/>
+        </node>
+    </group>
+
+    <!-- RViz -->
+    <group if="$(arg rviz)">
+        <include file="$(find description)/launch/view.launch"/>
+    </group>
 
 </launch>

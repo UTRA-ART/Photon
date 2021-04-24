@@ -4,6 +4,15 @@
     <!-- Constants -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
 
+    <!-- Ackermann Steering Controller -->
+    <gazebo>
+        <!-- Load ros_control plugin using the steer_bot_hardware_gazebo implementation of the hardware_interface::RobotHW -->
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+            <robotSimType>steer_bot_hardware_gazebo/SteerBotHardwareGazebo</robotSimType>
+            <legacyModeNS>false</legacyModeNS>
+        </plugin>
+    </gazebo>
 
     <!-- LIDAR -->
     <gazebo reference="lidar_link">
@@ -38,7 +47,6 @@
                 <frameName>lidar_link</frameName>
             </plugin>
         </sensor>
-
     </gazebo>
 
     <!-- IMU -->

@@ -4,5 +4,3 @@
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find description)/rviz/view.rviz"/>
 
 </launch>
-
-

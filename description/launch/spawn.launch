@@ -19,8 +19,11 @@
             -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
 
     <!-- Setup TF Tree -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <!-- Ackermann Steering Controller -->
+    <include file="$(find description)/launch/ackermann_controller.launch"/>
 
     <!-- Process Raw Camera Feed -->
     <include file="$(find description)/launch/rgbd_camera.launch">
