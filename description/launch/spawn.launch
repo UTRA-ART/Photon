@@ -25,6 +25,11 @@
     <!-- Ackermann Steering Controller -->
     <include file="$(find description)/launch/ackermann_controller.launch"/>
 
+    <!-- Twist Multiplexer -->
+    <include file="$(find twist_mux)/launch/twist_mux_custom.launch">
+        <arg name="cmd_vel_out" value="/ackermann_steering_controller/cmd_vel"/>
+    </include>
+
     <!-- Process Raw Camera Feed -->
     <include file="$(find description)/launch/rgbd_camera.launch">
         <arg name="camera_ns" value="camera/camera_node"/>

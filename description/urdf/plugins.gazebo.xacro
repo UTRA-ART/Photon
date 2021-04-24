@@ -72,7 +72,7 @@
         </sensor>
     </gazebo>
 
-    <!--Stereo Camera-->
+    <!-- STEREO CAMERA -->
     <!-- NOTE: 
     it is assumed that the left camera is at the origin specified by "frameName" (or
     referenced by gazebo) and that the right camera is "hackBaseline" away from it
