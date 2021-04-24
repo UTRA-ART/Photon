@@ -1,0 +1,23 @@
+<launch>
+
+    <!-- Default camera namespacing -->
+    <arg name="camera_ns" default="camera/camera_node"/>
+
+    <group ns="$(arg camera_ns)">
+
+        <!-- Image Rectification + Stereo Processing -->
+        <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc">
+            <remap from="points2"           to="point_cloud/cloud_registered"/>
+            <remap from="disparity"         to="disparity/disparity_registered"/>
+            <remap from="left/image_raw"    to="left/image_raw_color"/>
+            <remap from="right/image_raw"   to="right/image_raw_color"/>
+
+            <!-- <param name="speckle_range"     value="8"/> -->
+            <param name="speckle_size"      value="400"/>
+        </node>
+
+    </group>
+
+    <!-- TODO: disparity to depth + visual odom (most likely will use RTABmap again) -->
+
+</launch>

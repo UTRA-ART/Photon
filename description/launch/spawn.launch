@@ -1,39 +1,38 @@
 <launch>
 
-    <arg name="robot_ns" default="/"/>
-
     <!-- Spawn location -->
     <arg name="x"     default="0"/>
-    <arg name="y"     default="0"/>
-    <arg name="z"     default="0.05"/>
+    <arg name="y"     default="1.5"/>
+    <arg name="z"     default="0.15"/>
     <arg name="roll"  default="0"/>
     <arg name="pitch" default="0"/>
     <arg name="yaw"   default="0"/>
-
-    <group ns="$(arg robot_ns)">
-        <!-- TF Prefix: since "ns" does not affect TF tree -->
-        <param name="tf_prefix" value="$(arg robot_ns)"/>
-
-        <!-- Parse URDF with xacro -->
-        <param name="robot_description" command="xacro '$(find description)/urdf/cybertruck.urdf.xacro'"/>
-
-        <!-- Spawn Caffeine in Gazebo -->
-        <node name="spawn_cybertruck" pkg="gazebo_ros" type="spawn_model"
-            args="-param robot_description
-                -urdf -model $(arg robot_ns)_cybertruck
-                -x $(arg x) -y $(arg y) -z $(arg z)
-                -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
-
-        <!-- Setup TF Tree -->
-        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-        
-        <!-- Added rqt robot steering -->
-        <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-            <param name="default_topic" value="/cmd_vel"/> 
-        
-        </node>
-      
-    </group>
     
+    <!-- Parse URDF with xacro -->
+    <param name="robot_description" command="xacro '$(find description)/urdf/photon.urdf.xacro'"/>
+
+    <!-- Spawn Photon in Gazebo -->
+    <node name="spawn_photon" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description
+            -urdf -model photon
+            -x $(arg x) -y $(arg y) -z $(arg z)
+            -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
+
+    <!-- Setup TF Tree -->
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <!-- Ackermann Steering Controller -->
+    <include file="$(find description)/launch/ackermann_controller.launch"/>
+
+    <!-- Twist Multiplexer -->
+    <include file="$(find twist_mux)/launch/twist_mux_custom.launch">
+        <arg name="cmd_vel_out" value="/ackermann_steering_controller/cmd_vel"/>
+    </include>
+
+    <!-- Process Raw Camera Feed -->
+    <include file="$(find description)/launch/rgbd_camera.launch">
+        <arg name="camera_ns" value="camera/camera_node"/>
+    </include>
+
 </launch>
