@@ -4,6 +4,7 @@
     <!-- Includes -->
     <xacro:include filename="$(find description)/urdf/constants.xacro"/>
     <xacro:include filename="$(find description)/urdf/inertias.xacro"/>
+    <xacro:include filename="$(find description)/urdf/materials.xacro"/>
     <xacro:include filename="$(find description)/urdf/plugins.gazebo.xacro"/>
 
     <link name="base_link"/>
@@ -38,15 +39,15 @@
     <!-- Wheels -->
     <xacro:include filename="$(find description)/urdf/wheels.urdf.xacro"/>
 
-     <!-- LIDAR -->
+    <!-- LIDAR -->
     <link name="lidar_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
                 <box size="0.03 0.03 0.03" />
             </geometry>
-            <material name="Cyan">
-                <color rgba="0 1.0 1.0 1.0"/>
+            <material name="Grey">
+                <color rgba="0.75 0.75 0.75 1.0"/>
             </material>
         </visual>
     </link>
@@ -57,15 +58,15 @@
         <origin xyz="${fb_separation/2} 0 ${-height_to_wheel/2}" rpy="0 0 0"/>
     </joint>
 
-     <!-- IMU -->
+    <!-- IMU -->
     <link name="imu_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
                 <box size="0.03 0.03 0.03" />
             </geometry>
-            <material name="Cyan">
-                <color rgba="0 0.0 1.0 1.0"/>
+            <material name="Green">
+                <color rgba="0.0 1.0 0.0 1.0"/>
             </material>
         </visual>
     </link>
@@ -76,28 +77,54 @@
         <origin xyz="0 0 ${-height_to_wheel}" rpy="0 0 0"/>
     </joint>
 
-    <!-- ZED Camera -->
+    <!-- STEREO CAMERA -->
+    <!-- NOTE: this frame is for convenience, multicamera will use the subsequent left camera frames -->
     <link name="camera_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-            <box size="${camera_width} ${camera_length} ${camera_height}"/>
+                <box size="${camera_width} ${camera_length} ${camera_height}"/>
             </geometry>
+            <material name="Blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
         </visual>
+
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
                 <box size="${camera_width} ${camera_length} ${camera_height}"/>
             </geometry>
         </collision>
+
         <inertial>
             <xacro:box_inertia mass="${camera_mass}" length="${camera_length}" width="${camera_width}" height="${camera_height}"/>
-            <mass value="${camera_mass}"/>
         </inertial>
     </link>
+
     <joint name="camera_joint" type="fixed">
-        <origin xyz="${body_length/2 - camera_width} 0 ${camera_height / 2.0}" rpy="0 ${camera_pitch} 0"/>
         <parent link="body_link"/>
         <child link="camera_link"/>
+        <origin xyz="${body_length / 2.0 - camera_width} 0 ${-height_to_wheel + camera_height / 2.0}" rpy="0 ${camera_pitch} 0"/>
     </joint>
+
+    <!-- Generate Left Camera frame -->
+    <!-- NOTE: specify frame of left camera because right one is specified relative to it by the multicamera plugin -->
+    <link name="camera_left_link"/>
+
+    <joint name="camera_left_link_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_left_link"/>
+        <origin xyz="0 ${stereo_offset / 2.0} 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Generate the Optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames so that ros and opencv can operate on the camera frame correctly -->
+    <link name="camera_left_link_optical"/>
+
+    <joint name="camera_left_link_optical_joint" type="fixed">
+        <parent link="camera_left_link"/>
+        <child link="camera_left_link_optical"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
 </robot>
