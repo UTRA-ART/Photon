@@ -29,6 +29,12 @@ sudo rosdep init
 rosdep update
 ```
 
+### Install Ackermann Steering Controller ###
+Provides the [Ackermann Steering](http://wiki.ros.org/ackermann_steering_controller) controller used to move the robot.
+```bash
+sudo apt-get install ros-melodic-ackermann-steering-controller
+```
+
 ### Install the Navigation Package ###
 Provides the [Navigation Stack](http://wiki.ros.org/navigation) package which is used for autonomous navigation.
 ```bash
@@ -49,7 +55,7 @@ cd photon-ws
 catkin_make
 ```
 After, clone this repository into the `/src` folder.
-> **Optionally:** clone this repository as your source folder, i.e. rename `Photon/` to `src/`
+> **Optionally (preferred):** clone this repository as your source folder, i.e. rename `Photon/` to `src/`
 
 ---
 <p align="center">
