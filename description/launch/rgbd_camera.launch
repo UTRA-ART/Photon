@@ -18,4 +18,6 @@
 
     </group>
 
+    <!-- TODO: disparity to depth + visual odom (most likely will use RTABmap again) -->
+
 </launch>

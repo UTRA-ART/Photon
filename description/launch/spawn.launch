@@ -23,8 +23,8 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
     <!-- Process Raw Camera Feed -->
-    <!-- <include file="$(find description)/launch/rgbd_camera.launch">
+    <include file="$(find description)/launch/rgbd_camera.launch">
         <arg name="camera_ns" value="camera/camera_node"/>
-    </include> -->
+    </include>
 
 </launch>

@@ -30,16 +30,16 @@
     <xacro:property name="camera_length" value="0.175"/>
     <xacro:property name="camera_width" value="0.03"/>
     <xacro:property name="camera_height" value="0.033"/>
-    <xacro:property name="camera_pitch" value="${15 * pi/180}"/>
+    <xacro:property name="camera_pitch" value="${5 * pi/180}"/>
 
-    <xacro:property name="camera_update_rate" value="60"/>
+    <xacro:property name="camera_update_rate" value="30"/>
     <xacro:property name="camera_hfov" value="${90 * pi/180}"/>
     <xacro:property name="stereo_offset" value="${camera_length / 2.0}"/>    <!-- Distance between left and right cameras -->
-    <xacro:property name="image_width" value="3840"/>
+    <xacro:property name="image_width" value="1920"/>
     <xacro:property name="image_height" value="1080"/>
     <xacro:property name="image_format" value="R8G8B8"/>
 
-    <xacro:property name="camera_ns" value="camera/camera_node"/>
+    <xacro:property name="camera_ns" value="camera/camera_node"/>  <!-- Use a name representative of the camera being used -->
     <xacro:property name="always_on" value="true"/>
     <xacro:property name="image_topicName" value="image_raw_color"/>
     <xacro:property name="image_info_topicName" value="camera_info"/>
