@@ -47,6 +47,10 @@ Provides the [Robot Localization](http://docs.ros.org/en/melodic/api/robot_local
 sudo apt-get install ros-melodic-robot-localization
 ```
 
+### Install IARRC Worlds ###
+Custom built worlds representing the IARRC competition can be found in the [`/worlds`](./worlds) package. To install them for use in the Gazebo simulator, run the `install.sh` script found in the `/worlds` folder.
+> **NOTE:** The install script copies specific contents of `/worlds/models` to `~/.gazebo/models`
+
 ## Cloning this repository ##
 Before cloning this repository, create a ROS workspace:
 ```bash
@@ -55,7 +59,7 @@ cd photon-ws
 catkin_make
 ```
 After, clone this repository into the `/src` folder.
-> **Optionally (preferred):** clone this repository as your source folder, i.e. rename `Photon/` to `src/`
+> **Optionally (preferred):** clone this repository as your source folder, i.e. rename `/Photon` to `/src`
 
 ---
 <p align="center">
