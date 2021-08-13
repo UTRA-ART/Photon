@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="igvc_basic_ground">
+  <model name="Circuit_Race">
     <static>true</static>
     <link name="link">
       <collision name="collision">
@@ -29,8 +29,8 @@
         </geometry>
         <material>
           <script>
-            <uri>model://igvc_basic_ground/materials/scripts</uri>
-            <uri>model://igvc_basic_ground/materials/textures</uri>
+            <uri>model://Circuit_Race/materials/scripts</uri>
+            <uri>model://Circuit_Race/materials/textures</uri>
             <name>Circuit_Race/Image</name>
           </script>
         </material>

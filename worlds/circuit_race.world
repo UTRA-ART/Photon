@@ -37,8 +37,8 @@
           </geometry>
           <material>
             <script>
-              <uri>model://igvc_basic_ground/materials/scripts</uri>
-              <uri>model://igvc_basic_ground/materials/textures</uri>
+              <uri>model://Circuit_Race/materials/scripts</uri>
+              <uri>model://Circuit_Race/materials/textures</uri>
               <name>Circuit_Race/Image</name>
             </script>
           </material>
@@ -53,6 +53,26 @@
         <enable_wind>0</enable_wind>
       </link>
     </model>
-    <wind/>
-  </world>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://Circuit_Race/materials/scripts</uri>
+              <uri>model://Circuit_Race/materials/textures</uri>
+              <name>Circuit_Race/grass</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <pose frame=''>0 0 -0.2 0 0 0</pose>
+    </model>
+
 </sdf>
